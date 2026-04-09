@@ -1,3 +1,13 @@
+import subprocess
+import sys
+import os
+
+# Install Playwright browsers on Streamlit Cloud
+if not os.path.exists('/home/appuser/.cache/ms-playwright'):
+    subprocess.run([sys.executable, '-m', 'playwright', 'install', 'chromium'], 
+                   check=False)
+    subprocess.run([sys.executable, '-m', 'playwright', 'install-deps', 'chromium'],
+                   check=False)
 import streamlit as st
 from scraper import scrape_url
 from rag_engine import build_vectorstore_from_docs, get_qa_chain
